@@ -1,21 +1,43 @@
-#include "stm32f10x.h"
 #include "delay.h"
-
-/************************************************
- ALIENTEK 战舰STM32F103开发板实验0
- 工程模板
- 注意，这是手册中的新建工程章节使用的main文件 
- 技术支持：www.openedv.com
- 淘宝店铺：http://eboard.taobao.com 
- 关注微信公众平台微信号："正点原子"，免费获取STM32资料。
- 广州市星翼电子科技有限公司  
- 作者：正点原子 @ALIENTEK
-************************************************/
+#include "lcd.h"
+#include "sys.h"
+#include "usart.h"
+#include "motor.h"
+#include "my_usart.h"
 
 int main()
 {
-   delay_ms(100);
+//	u8 a = 'A' ;
+//***********函数初始化**************//
+	/***lcd调试才开启***/
+	delay_init(); 
+//	uart_init(9600) ;
+//	LCD_Init();
+  	
+/*** USART2 初始化 ***/
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+	my_usart2_init(9600) ;
+	
+/*** 电机驱动（PWM）初始化频率 ***/
+	motor_init(100 , 72 ) ;
+	motor_set_hz(1000) ;
+	my_usart2_init(9600) ;
+  
+  while(1) 
+	{
+	  
+	
+	
+	}
+			 
+		 
+   	
 
+
+	 
+
+
+	
 
 
 

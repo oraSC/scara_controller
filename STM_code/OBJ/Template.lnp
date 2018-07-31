@@ -30,6 +30,9 @@
 "..\obj\stm32f10x_tim.o"
 "..\obj\stm32f10x_usart.o"
 "..\obj\stm32f10x_wwdg.o"
+"..\obj\lcd.o"
+"..\obj\motor.o"
+"..\obj\my_usart.o"
 --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\Template.map" -o ..\OBJ\Template.axf
