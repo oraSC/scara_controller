@@ -29,3 +29,9 @@
 ..\obj\motor.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\motor.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\motor.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\motor.o: ..\HARDWARE\my_led\LED.h
+..\obj\motor.o: ..\HARDWARE\my_lcd\lcd.h
+..\obj\motor.o: ..\SYSTEM\sys\sys.h
+..\obj\motor.o: D:\win10\app\keil5\set_up_path\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\motor.o: D:\win10\app\keil5\set_up_path\ARM\ARMCC\bin\..\include\math.h
+..\obj\motor.o: ..\HARDWARE\my_usart\my_usart.h

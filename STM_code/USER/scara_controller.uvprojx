@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\my_lcd;..\HARDWARE\my_motor;..\HARDWARE\my_usart</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\my_lcd;..\HARDWARE\my_motor;..\HARDWARE\my_usart;..\HARDWARE\my_led;..\HARDWARE\my_potentiometer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -606,6 +606,16 @@
               <FileName>my_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\my_usart\my_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\my_led\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>potentiometer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\my_potentiometer\potentiometer.c</FilePath>
             </File>
           </Files>
         </Group>

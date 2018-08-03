@@ -1,6 +1,7 @@
 #include "my_usart.h"
 #include "delay.h"
-
+#include "LED.h"
+#include "MATH.h"
 void my_usart2_init(u32 boud)
 {
 	GPIO_InitTypeDef GPIO_InitStructure_PA2 ;
@@ -43,31 +44,74 @@ void my_usart2_init(u32 boud)
 	NVIC_InitStructure_USART2.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
 	NVIC_Init(&NVIC_InitStructure_USART2);	//根据指定的参数初始化VIC寄存器
   
-	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+//	USART_ITConfig(USART2, USART_IT_RXNE , ENABLE);
+//	USART_ITConfig(USART2, USART_IT_TC , ENABLE);     
   USART_Cmd(USART2 , ENABLE) ;
-  
 
 }
 
-void USART2_IRQHandler(void)                	//串口1中断服务程序
+void usart2_send_char(u8 _char)
+{/** 等待发送完成 **/
+	/* USART2_SR_TC 发送完成标志位*/
+	while( (USART2->SR & (1 << USART2_SR_TC) )  == 0) ;
+	USART2->DR = _char ;
+}
+
+void usart2_send_string(u8 *string)
 {
- u8 rec ;
 	
-	if(USART_GetITStatus(USART2, USART_IT_RXNE) == SET)
-	{
-		rec = USART2->DR ;
-		delay_ms(1000);
-		USART_SendData(USART2 , rec);
-		
-	
-	
+	while(*string)
+	{ /** 等待发送完成 **/
+		while( (USART2->SR & (1 << USART2_SR_TC) )  == 0) ;
+		USART2->DR = *string ;
+    string ++ ;
 	}
-	
+}	
+void usart2_send_num(u32 num)
+{
+   u16 len = 0 ;
+	 u16 i;
+	 u8  num_string[10]= "" ;
+	 u32 numcopy = num ;
+	/** 判断位数 **/
+	 while(numcopy)
+   {
+			numcopy = numcopy / 10 ;
+		  len ++ ;
+	 }
+
+   for( i = 0 ; i < len ; i++)
+	 {/** 提取各个位 **/
+		 num_string[i] = (u32)(num / pow(10 , len - i -1)) % 10 + '0';
+	 }
+   usart2_send_string(num_string);
+}
+u8 usart2_wait_receive(void)
+{   u8 rec ;
+	  /** 等待读寄存器非空 **/
+	  //************************
+	  //* 1.开启中断，使用while(USART_GetITStatus(USART2, USART_IT_RXNE) ) == RESET) 没用
+	  //* 2.开启中断，会使如下语句一直等待
+	  //************************
+    while((USART2->SR & (1 << USART2_SR_RXNE) ) == RESET);
+	  rec = USART2->DR ;
+		return rec ;
+}
 
 
-
-	
-} 
+//void USART2_IRQHandler(void)                	//串口1中断服务程序
+//{
+// u8 rec ;
+///*** 判断标志位 ***/
+//	if(USART_GetITStatus(USART2, USART_IT_RXNE) == SET)
+//	{
+//		/** 对于USART接受中断，读取USART2->DR即可自动清除RXNE标志 **/
+//		rec = USART2->DR ;
+//		usart2_send_char(rec) ;
+//	}
+//	
+//	
+//} 
 
 
 

@@ -36,3 +36,5 @@
 ..\obj\main.o: D:\win10\app\keil5\set_up_path\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\main.o: ..\HARDWARE\my_motor\motor.h
 ..\obj\main.o: ..\HARDWARE\my_usart\my_usart.h
+..\obj\main.o: ..\HARDWARE\my_led\LED.h
+..\obj\main.o: ..\HARDWARE\my_potentiometer\potentiometer.h
