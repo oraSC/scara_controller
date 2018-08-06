@@ -46,7 +46,14 @@ void motor_init( u16 period , u16 prescaler )
 	TIM_ITConfig(TIM2 , TIM_IT_CC2 , ENABLE ) ;
 	
 	TIM_OC2PreloadConfig(TIM2 , TIM_OCPreload_Enable) ; //使能预装载寄存器
-	TIM_Cmd(TIM2 , ENABLE) ;
+//	TIM_Cmd(TIM2 , ENABLE) ;
+	
+/*** 初始化机械臂转轴动作 ***/
+  /** 初始化速度为MIN_speed **/
+	/** 停止转动状态 **/
+	motor_set_hz(MIN_speed) ;
+	motor_stop ;
+	
 	
 }
 
@@ -61,6 +68,17 @@ void motor_set_hz( u16 hz)
   TIM2->CCR2 = half_hz ;
 	
 }
+u16 motor_get_hz(void)
+{
+	u16 prescaler ;
+	u16 hz ;
+  prescaler = TIM_GetPrescaler(TIM2) ;
+  hz = 72000000/prescaler/(TIM2->ARR) ;
+  return hz ;
+
+}
+
+
 
 void s_modelline(u16 *fre , u16 len , u16 fre_min , u16 fre_max , u16 flexible) 
 {
@@ -87,7 +105,7 @@ void TIM2_IRQHandler(void)
 	if ((TIM2->SR & TIM_IT_CC2 )) 
 	{ 
 	  counter++ ;
-		if(counter < 400)
+		if(counter < SPEEDUP_len -1 )
 		{
 		   motor_set_hz(fre[counter]);
 //		   usart2_send_num(fre[counter]) ;

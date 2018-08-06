@@ -2,6 +2,8 @@
 #include "delay.h"
 #include "LED.h"
 #include "MATH.h"
+#include "lcd.h"
+
 void my_usart2_init(u32 boud)
 {
 	GPIO_InitTypeDef GPIO_InitStructure_PA2 ;
@@ -12,6 +14,8 @@ void my_usart2_init(u32 boud)
 /*** 使能USART2、GPIOA时钟 ***/
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2 , ENABLE) ;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA , ENABLE) ;
+	
+	USART_DeInit(USART2);
 	
 /*** GPIO初始化配置 ***/
 	/** USART2_TX ---> PA2 **/
@@ -39,12 +43,12 @@ void my_usart2_init(u32 boud)
 	USART_Init(USART2 , &USART_InitStructure_USART2) ;
 
   NVIC_InitStructure_USART2.NVIC_IRQChannel = USART2_IRQn;
-	NVIC_InitStructure_USART2.NVIC_IRQChannelPreemptionPriority=3 ;//抢占优先级3
-	NVIC_InitStructure_USART2.NVIC_IRQChannelSubPriority = 3;		//子优先级3
+	NVIC_InitStructure_USART2.NVIC_IRQChannelPreemptionPriority=0 ;//抢占优先级3
+	NVIC_InitStructure_USART2.NVIC_IRQChannelSubPriority = 0;		//子优先级3
 	NVIC_InitStructure_USART2.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
 	NVIC_Init(&NVIC_InitStructure_USART2);	//根据指定的参数初始化VIC寄存器
-  
-//	USART_ITConfig(USART2, USART_IT_RXNE , ENABLE);
+
+	USART_ITConfig(USART2, USART_IT_RXNE , ENABLE);
 //	USART_ITConfig(USART2, USART_IT_TC , ENABLE);     
   USART_Cmd(USART2 , ENABLE) ;
 
@@ -53,7 +57,7 @@ void my_usart2_init(u32 boud)
 void usart2_send_char(u8 _char)
 {/** 等待发送完成 **/
 	/* USART2_SR_TC 发送完成标志位*/
-	while( (USART2->SR & (1 << USART2_SR_TC) )  == 0) ;
+	while( !(USART2->SR & (1 << USART2_SR_TC) )) ;
 	USART2->DR = _char ;
 }
 
@@ -62,7 +66,7 @@ void usart2_send_string(u8 *string)
 	
 	while(*string)
 	{ /** 等待发送完成 **/
-		while( (USART2->SR & (1 << USART2_SR_TC) )  == 0) ;
+		while( !(USART2->SR & (1 << USART2_SR_TC))) ;
 		USART2->DR = *string ;
     string ++ ;
 	}
@@ -86,32 +90,29 @@ void usart2_send_num(u32 num)
 	 }
    usart2_send_string(num_string);
 }
-u8 usart2_wait_receive(void)
-{   u8 rec ;
-	  /** 等待读寄存器非空 **/
-	  //************************
-	  //* 1.开启中断，使用while(USART_GetITStatus(USART2, USART_IT_RXNE) ) == RESET) 没用
-	  //* 2.开启中断，会使如下语句一直等待
-	  //************************
-    while((USART2->SR & (1 << USART2_SR_RXNE) ) == RESET);
-	  rec = USART2->DR ;
-		return rec ;
+//u8 usart2_wait_receive(void)
+//{   u8 rec ;
+//	  /** 等待读寄存器非空 **/
+//	  //************************
+//	  //* 1.开启中断，使用while(USART_GetITStatus(USART2, USART_IT_RXNE)  == RESET) 没用
+//	  //* 2.开启中断，会使如下语句一直等待
+//	  while( !(USART2->SR & USART2_SR_RXNE) ) ;
+
+//	  rec = USART2->DR ;
+//		return rec ;
+//}
+
+
+void USART2_IRQHandler(void)
+	{     LED1_ON ;
+        if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) 
+					{
+                 USART_ClearITPendingBit(USART2, USART_IT_RXNE);
+                 LED2_ON ;
+                 }
+         
+        
 }
-
-
-//void USART2_IRQHandler(void)                	//串口1中断服务程序
-//{
-// u8 rec ;
-///*** 判断标志位 ***/
-//	if(USART_GetITStatus(USART2, USART_IT_RXNE) == SET)
-//	{
-//		/** 对于USART接受中断，读取USART2->DR即可自动清除RXNE标志 **/
-//		rec = USART2->DR ;
-//		usart2_send_char(rec) ;
-//	}
-//	
-//	
-//} 
 
 
 

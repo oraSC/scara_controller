@@ -33,3 +33,5 @@
 ..\obj\my_usart.o: ..\SYSTEM\sys\sys.h
 ..\obj\my_usart.o: ..\HARDWARE\my_led\LED.h
 ..\obj\my_usart.o: D:\win10\app\keil5\set_up_path\ARM\ARMCC\bin\..\include\MATH.h
+..\obj\my_usart.o: ..\HARDWARE\my_lcd\lcd.h
+..\obj\my_usart.o: D:\win10\app\keil5\set_up_path\ARM\ARMCC\bin\..\include\stdlib.h

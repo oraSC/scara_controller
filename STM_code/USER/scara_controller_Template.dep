@@ -1,5 +1,5 @@
 Dependencies for Project 'scara_controller', Target 'Template': (DO NOT MODIFY !)
-F (.\main.c)(0x5B640448)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5B67F274)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\delay\delay.h)(0x555AC82B)
 I (..\SYSTEM\sys\sys.h)(0x550F951B)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
@@ -34,8 +34,8 @@ I (..\HARDWARE\my_lcd\lcd.h)(0x5539BD28)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdlib.h)(0x53463A44)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdio.h)(0x53463A44)
-I (..\HARDWARE\my_motor\motor.h)(0x5B63F358)
-I (..\HARDWARE\my_usart\my_usart.h)(0x5B60C46F)
+I (..\HARDWARE\my_motor\motor.h)(0x5B67BD7A)
+I (..\HARDWARE\my_usart\my_usart.h)(0x5B67E215)
 I (..\HARDWARE\my_led\LED.h)(0x5B60940B)
 I (..\HARDWARE\my_potentiometer\potentiometer.h)(0x5B60EA47)
 F (.\stm32f10x_it.c)(0x4EBEACB0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
@@ -899,8 +899,8 @@ I (..\HARDWARE\my_lcd\font.h)(0x550289B7)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdio.h)(0x53463A44)
 I (..\SYSTEM\delay\delay.h)(0x555AC82B)
-F (..\HARDWARE\my_motor\motor.c)(0x5B6404B3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\motor.o --omf_browse ..\obj\motor.crf --depend ..\obj\motor.d)
-I (..\HARDWARE\my_motor\motor.h)(0x5B63F358)
+F (..\HARDWARE\my_motor\motor.c)(0x5B67EC33)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\motor.o --omf_browse ..\obj\motor.crf --depend ..\obj\motor.d)
+I (..\HARDWARE\my_motor\motor.h)(0x5B67BD7A)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdint.h)(0x53463A44)
@@ -934,9 +934,9 @@ I (..\HARDWARE\my_lcd\lcd.h)(0x5539BD28)
 I (..\SYSTEM\sys\sys.h)(0x550F951B)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdlib.h)(0x53463A44)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\math.h)(0x53463A44)
-I (..\HARDWARE\my_usart\my_usart.h)(0x5B60C46F)
-F (..\HARDWARE\my_usart\my_usart.c)(0x5B63F86A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\my_usart.o --omf_browse ..\obj\my_usart.crf --depend ..\obj\my_usart.d)
-I (..\HARDWARE\my_usart\my_usart.h)(0x5B60C46F)
+I (..\HARDWARE\my_usart\my_usart.h)(0x5B67E215)
+F (..\HARDWARE\my_usart\my_usart.c)(0x5B67F540)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\my_usart.o --omf_browse ..\obj\my_usart.crf --depend ..\obj\my_usart.d)
+I (..\HARDWARE\my_usart\my_usart.h)(0x5B67E215)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdint.h)(0x53463A44)
@@ -969,6 +969,8 @@ I (..\SYSTEM\delay\delay.h)(0x555AC82B)
 I (..\SYSTEM\sys\sys.h)(0x550F951B)
 I (..\HARDWARE\my_led\LED.h)(0x5B60940B)
 I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\MATH.h)(0x53463A44)
+I (..\HARDWARE\my_lcd\lcd.h)(0x5539BD28)
+I (D:\win10\app\keil5\set_up_path\ARM\ARMCC\include\stdlib.h)(0x53463A44)
 F (..\HARDWARE\my_led\LED.c)(0x5B60940B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\my_lcd -I..\HARDWARE\my_motor -I..\HARDWARE\my_usart -I..\HARDWARE\my_led -I..\HARDWARE\my_potentiometer-I D:\win10\app\keil5\set_up_path\ARM\RV31\INC-I D:\win10\app\keil5\set_up_path\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I D:\win10\app\keil5\set_up_path\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
 I (..\HARDWARE\my_led\LED.h)(0x5B60940B)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
