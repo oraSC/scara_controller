@@ -5,6 +5,7 @@
 #include "my_usart.h"
 
 extern u16 fre[] ;
+extern u16 allcounter_x ;
 
 void motor_init( u16 period , u16 prescaler )
 {
@@ -111,7 +112,7 @@ void TIM2_IRQHandler(void)
 //		   usart2_send_num(fre[counter]) ;
 //			 usart2_send_char(' ');
 		}
-		if(counter == 8000)
+		if(counter >= allcounter_x)
 		{
       motor_stop ;
 		}

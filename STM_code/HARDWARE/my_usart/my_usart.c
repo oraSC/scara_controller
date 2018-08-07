@@ -4,6 +4,10 @@
 #include "MATH.h"
 #include "lcd.h"
 
+u16 receive_len = 0;
+u8 receive_data[20];
+u8 wait_receive_Y = 0 ;
+
 void my_usart2_init(u32 boud)
 {
 	GPIO_InitTypeDef GPIO_InitStructure_PA2 ;
@@ -77,19 +81,90 @@ void usart2_send_num(u32 num)
 	 u16 i;
 	 u8  num_string[10]= "" ;
 	 u32 numcopy = num ;
-	/** 判断位数 **/
-	 while(numcopy)
-   {
-			numcopy = numcopy / 10 ;
-		  len ++ ;
-	 }
+	if(num == 0)
+	{
+		usart2_send_char('0');
+	}
+	else 
+	{
+			/** 判断位数 **/
+			 while(numcopy)
+			 {
+					numcopy = numcopy / 10 ;
+					len ++ ;
+			 }
 
-   for( i = 0 ; i < len ; i++)
-	 {/** 提取各个位 **/
-		 num_string[i] = (u32)(num / pow(10 , len - i -1)) % 10 + '0';
-	 }
-   usart2_send_string(num_string);
+			 for( i = 0 ; i < len ; i++)
+			 {/** 提取各个位 **/
+				 num_string[i] = (u32)(num / pow(10 , len - i -1)) % 10 + '0';
+			 }
+			 usart2_send_string(num_string);
+		 }
 }
+
+u16 usart2_wait_receive_data(void)
+{
+    u8 data_x[10];
+	  u16 data_x_len = 0 ;
+	  u8 data_y[10];
+	  u16 data_y_len = 0 ;
+	  u16 i = 0;
+	  u16 j = 0;
+	  u16 distance_x = 0;
+	  u16 distance_y = 0;
+	
+		while(!wait_receive_Y);
+    LCD_ShowString(0 , 20 , 200 , 16 , 16 , receive_data );
+	  /** 切割receive_data **/
+    for( ; receive_data[i] !='X' ; i++)
+	  {
+		 /** 符号位 **/
+		 if( i == 0 )
+		    {}
+		 else 
+		    {
+					data_x[data_x_len ++] = receive_data[i];
+				}
+		}
+    
+		distance_x = data_string2num(data_x , data_x_len) ;
+		LCD_ShowNum(0 , 40 ,  distance_x , 10 , 16  );
+    /** 切割receive_data **/
+    for( j = i + 1; receive_data[j] !='Y' ; j++)
+	  {
+		 /** 符号位 **/
+		 if( j == i + 1 )
+		    {}
+		 else 
+		    {
+					data_y[data_y_len ++] = receive_data[j];
+				}
+		}
+		distance_y = data_string2num(data_y , data_y_len) ;
+		LCD_ShowNum(0 , 60 ,  distance_y , 10 , 16  );
+		return distance_x ;
+}
+
+u16 data_string2num(u8 *_string , u16 len)
+{   
+	u16 i = 0 ;
+	u16 num = 0 ;
+    for( ; i < len ; i++)
+	   {
+		     num += (*_string - '0' )*pow(10 , len - i - 1) ;
+			   _string ++ ;
+		 }
+     return num ;
+
+
+
+}
+
+
+
+//******************************
+//*无法使用
+//*****************************
 //u8 usart2_wait_receive(void)
 //{   u8 rec ;
 //	  /** 等待读寄存器非空 **/
@@ -97,21 +172,25 @@ void usart2_send_num(u32 num)
 //	  //* 1.开启中断，使用while(USART_GetITStatus(USART2, USART_IT_RXNE)  == RESET) 没用
 //	  //* 2.开启中断，会使如下语句一直等待
 //	  while( !(USART2->SR & USART2_SR_RXNE) ) ;
-
+//    
 //	  rec = USART2->DR ;
 //		return rec ;
 //}
 
 
 void USART2_IRQHandler(void)
-	{     LED1_ON ;
-        if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) 
-					{
-                 USART_ClearITPendingBit(USART2, USART_IT_RXNE);
-                 LED2_ON ;
-                 }
-         
-        
+	{     
+    if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) 
+		{
+			receive_data[receive_len ]  = USART_ReceiveData(USART2) ;
+			if(receive_data[receive_len] == 'Y')
+				wait_receive_Y   = 1 ;
+			else 
+				receive_len ++ ;
+			
+			USART_ClearITPendingBit(USART2 , USART_IT_RXNE);
+		}
+               
 }
 
 

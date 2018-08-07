@@ -3,7 +3,7 @@
 
 #include "stm32f10x.h"
 
-#define MAX_speed     7500 
+#define MAX_speed     7000 
 #define MIN_speed     1500 
 #define SPEEDUP_len   400
 

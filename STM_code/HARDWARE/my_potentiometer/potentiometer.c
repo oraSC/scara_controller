@@ -15,7 +15,7 @@ void  potentiometer_init(void)
 
 /*** GPIO初始化配置 ***/
 	/** ADC1_channel 4 ---> PA4 **/                   
-	GPIO_InitStructure_PA4.GPIO_Pin = GPIO_Pin_3;
+	GPIO_InitStructure_PA4.GPIO_Pin = GPIO_Pin_4;
 	GPIO_InitStructure_PA4.GPIO_Mode = GPIO_Mode_AIN;		//模拟输入引脚
 	GPIO_Init(GPIOA, &GPIO_InitStructure_PA4);	
 	
@@ -77,7 +77,7 @@ u16 get_ang(u16 time)
 	u16 adc_value;
 	float vo;
 	float ang ;
-			adc_value=Get_Adc_Average(ADC_Channel_4,5) ;
+			adc_value=Get_Adc_Average(ADC_Channel_4,time) ;
 			vo=(float)adc_value*(3.3/4096) ;
 			ang = vo/3.3 * 360 ;
 	return ang;
